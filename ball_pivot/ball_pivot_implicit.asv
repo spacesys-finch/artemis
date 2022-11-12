@@ -1,0 +1,32 @@
+load("../propagator_ver2/beta.mat")
+f = @(x) beta(1) + x * beta(2) + x.^2 * beta(3) ;
+df = @(x) beta(2) + 2*x*beta(3);
+r = 87.5/(40076e3);
+
+x0 = -79.3832;
+dr = df(x0);
+M = x0 + r/sqrt(1 + grad^2);
+n = 100;
+warning('off')
+x = linspace(x0 - , x0 + n*r, 100);
+plot(x, f(x), linewidth = 3)
+xlabel("$x$", "Interpreter","latex")
+ylabel("$y$", "Interpreter","latex")
+
+title("Ball-Pivoting on $sin(x)$", "Interpreter","latex")
+
+coord = zeros(1, n);
+hold on
+for i = 1:n
+    y0 = f(x0);
+    grad = df(x0);
+    xx = x0 + r/sqrt(1 + grad^2);
+    scatter(x0, y0, 50, "filled")
+    coord(1, i) = xx;
+    x0 = xx;
+    scatter(coord(1, i), f(coord(1, i)), 50, "filled")
+end
+hold off
+saveas(gcf, "demo.pdf")
+axis equal
+

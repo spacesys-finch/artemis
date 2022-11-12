@@ -1,0 +1,14 @@
+function rel_pos(u, v)
+    %u, v: (r, phi, theta)
+    %   vectors in spherical coordinates. Compute relative position of u
+    %   with respect to v. Vector addition and subtraction needs both of
+    %   them to be in cartesian, must convert first
+
+    u_cart = [u(1)*cos(u(2))*sin(u(3));
+              u(1)*sin(u(2))*sin(u(3));
+              u(1)*cos(u(3))];
+
+    v_cart = []
+    
+
+end
